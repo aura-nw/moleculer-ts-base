@@ -1,0 +1,5 @@
+**/node_modules/*
+**/.build/*
+#dangerfile.ts
+.eslintrc.cjs
+# commitlint.config.js
