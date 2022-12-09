@@ -1,68 +1,35 @@
 {
-  "name": "ts-mole",
-  "version": "1.0.0",
-  "description": "My Moleculer-based microservices project",
-  "scripts": {
-    "build": "tsc --build tsconfig.json",
-    "dev": "ts-node ./node_modules/moleculer/bin/moleculer-runner.js --hot --repl --config moleculer.config.ts services/**/*.service.ts",
-    "start": "moleculer-runner --config dist/moleculer.config.js",
-    "cli": "moleculer connect Redis",
-    "ci": "jest --watch",
-    "test": "jest --coverage",
-    "lint": "eslint --ext .js,.ts .",
-    "dc:up": "docker-compose up --build -d",
-    "dc:logs": "docker-compose logs -f",
-    "dc:down": "docker-compose down"
-  },
-  "keywords": [
-    "microservices",
-    "moleculer"
-  ],
-  "author": "",
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.2",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
-    "eslint-plugin-prefer-arrow": "^1.2.2",
-    "jest": "^25.1.0",
-    "jest-cli": "^25.1.0",
-    "moleculer-repl": "^0.6.2",
-    "ts-jest": "^25.3.0",
-    "ts-node": "^8.8.1"
-  },
-  "dependencies": {
-    "moleculer-web": "^0.9.0",
-    "moleculer-db": "^0.8.4",
-    "moleculer-db-adapter-mongo": "^0.4.7",
-    "ioredis": "^4.14.1",
-    "moleculer": "^0.14.0",
-    "typescript": "^3.8.3",
-    "@types/jest": "^25.1.4",
-    "@types/mkdirp": "^1.0.0",
-    "@types/node": "^13.9.8"
-},
-  "engines": {
-    "node": ">= 10.x.x"
-  },
-  "jest": {
-    "coverageDirectory": "<rootDir>/coverage",
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
+    "name": "lang-feature",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "ls": "ls",
+        "start": "yarn tsc;node --es-module-specifier-resolution=node .build/index.js",
+        "ts-node": "ts-node src/index.ts",
+        "mole1": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.js --config moleculer.config.ts",
+        "mole2": "ts-node ./node_modules/moleculer/bin/moleculer-runner.mjs --config moleculer.config.ts",
+        "tsc": "tsc"
     },
-    "testMatch": [
-      "**/*.spec.(ts|js)"
-    ],
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "tsconfig.json"
-      }
+    "dependencies": {
+        "dotenv": "^16.0.3",
+        "ioredis": "^5.2.4",
+        "moleculer": "^0.14.21",
+        "util": "^0.12.4"
+    },
+    "devDependencies": {
+        "@tsconfig/node16": "^1.0.3",
+        "@types/node": "^18.11.11",
+        "@typescript-eslint/eslint-plugin": "^5.40.1",
+        "@typescript-eslint/parser": "^5.40.1",
+        "eslint": "^8.25.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "prettier": "^2.7.1",
+        "typescript": "^4.8.4"
     }
-  }
 }

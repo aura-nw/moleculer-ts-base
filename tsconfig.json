@@ -1,18 +1,26 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"esModuleInterop": true,
-		"noImplicitAny": true,
-		"removeComments": true,
-		"preserveConstEnums": true,
-		"sourceMap": true,
-		"pretty": true,
-		"target": "es6",
-		"outDir": "dist"
-	},
-	"include": ["./**/*"],
-	"exclude": [
-		"node_modules/**/*",
-		"test"
-	]
+    "extends": "./tsconfig-base.json",
+    "compilerOptions": {
+        "target": "ES6",
+        "rootDir": "./src",
+        "module": "ES6",
+        "outDir": ".build",
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "baseUrl": ".",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "Node",
+        "resolveJsonModule": true
+    },
+    "exclude": [
+        "node_modules",
+        ".build"
+    ],
+    "ts-node": {
+        "esm": true,
+        // avoid need to specify extension when input
+        "experimentalSpecifierResolution": "node",
+        "experimentalResolver": true
+    }
 }
