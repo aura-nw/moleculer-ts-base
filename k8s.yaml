@@ -9,17 +9,9 @@ data:
   NAMESPACE: ""
   LOGLEVEL: info
   SERVICEDIR: dist/services
-  
   TRANSPORTER: redis://redis:6379
-  
-  
-  
-  
-  
-  
   CACHER: redis://redis:6379
   MONGO_URI: mongodb://mongo/ts-mole
-
 ---
 #########################################################
 # Service for Moleculer API Gateway service
@@ -32,9 +24,8 @@ spec:
   selector:
     app: api
   ports:
-  - port: 3000
-    targetPort: 3000
-
+    - port: 3000
+      targetPort: 3000
 ---
 #########################################################
 # Ingress for Moleculer API Gateway
@@ -45,14 +36,13 @@ metadata:
   name: ingress
 spec:
   rules:
-  - host: ts-mole.127.0.0.1.nip.io
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: api
-          servicePort: 3000
-
+    - host: ts-mole.127.0.0.1.nip.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: api
+              servicePort: 3000
 ---
 #########################################################
 # API Gateway service
@@ -72,19 +62,18 @@ spec:
         app: api
     spec:
       containers:
-      - name: api
-        image: ts-mole
-        envFrom:
-        - configMapRef:
-            name: common-env
-        env:
-          - name: SERVICES
-            value: api
-          - name: PORT
-            value: "3000"
-        ports:
-          - containerPort: 3000
-
+        - name: api
+          image: ts-mole
+          envFrom:
+            - configMapRef:
+                name: common-env
+          env:
+            - name: SERVICES
+              value: api
+            - name: PORT
+              value: "3000"
+          ports:
+            - containerPort: 3000
 ---
 #########################################################
 # Greeter service
@@ -104,15 +93,14 @@ spec:
         app: greeter
     spec:
       containers:
-      - name: greeter
-        image: ts-mole
-        envFrom:
-        - configMapRef:
-            name: common-env
-        env:
-          - name: SERVICES
-            value: greeter
-
+        - name: greeter
+          image: ts-mole
+          envFrom:
+            - configMapRef:
+                name: common-env
+          env:
+            - name: SERVICES
+              value: greeter
 ---
 #########################################################
 # Products service
@@ -132,15 +120,14 @@ spec:
         app: products
     spec:
       containers:
-      - name: products
-        image: ts-mole
-        envFrom:
-        - configMapRef:
-            name: common-env
-        env:
-          - name: SERVICES
-            value: products
-
+        - name: products
+          image: ts-mole
+          envFrom:
+            - configMapRef:
+                name: common-env
+          env:
+            - name: SERVICES
+              value: products
 ---
 #########################################################
 # MongoDB server
@@ -175,7 +162,6 @@ spec:
         - name: mongo-data
           persistentVolumeClaim:
             claimName: mongo-data
-
 ---
 #########################################################
 # Persistent volume for MongoDB
@@ -192,7 +178,6 @@ spec:
   resources:
     requests:
       storage: 100Mi
-
 ---
 #########################################################
 # MongoDB service
@@ -208,10 +193,7 @@ spec:
     - port: 27017
       targetPort: 27017
   selector:
-    app: mongo          
-
-
-
+    app: mongo
 ---
 #########################################################
 # Redis service
@@ -224,10 +206,9 @@ spec:
   selector:
     app: redis
   ports:
-  - port: 6379
-    name: redis
-    targetPort: 6379
-
+    - port: 6379
+      name: redis
+      targetPort: 6379
 ---
 #########################################################
 # Redis server (transporter/cacher)
@@ -249,13 +230,8 @@ spec:
         app: redis
     spec:
       containers:
-      - name: redis
-        image: redis
-        ports:
-        - containerPort: 6379
-          name: redis
-
-
-
-
-
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+              name: redis
