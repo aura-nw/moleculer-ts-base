@@ -2,7 +2,10 @@
     "extends": "./tsconfig-base.json",
     "compilerOptions": {
         "target": "ES6",
-        "rootDir": "./src",
+        "rootDirs": [
+            "./src",
+            "./test"
+        ],
         "module": "ES6",
         "outDir": ".build",
         "forceConsistentCasingInFileNames": true,
@@ -11,7 +14,12 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "Node",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "paths": {
+            "src/*": [
+                "./src/*"
+            ],
+        }
     },
     "exclude": [
         "node_modules",
