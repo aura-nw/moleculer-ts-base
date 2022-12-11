@@ -8,9 +8,9 @@
         "ls": "ls",
         "start": "yarn tsc;node --es-module-specifier-resolution=node .build/index.js",
         "ts-node": "ts-node src/index.ts",
-        "dev": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.mjs --hot --repl --config src/moleculer.config.ts",
-        "mole1": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.js --config src/moleculer.config.ts",
-        "mole2": "ts-node ./node_modules/moleculer/bin/moleculer-runner.mjs --config src/moleculer.config.ts",
+        "dev": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.mjs --hot --repl --env --config src/moleculer.config.ts",
+        "mole1": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.js --env --config src/moleculer.config.ts",
+        "mole2": "ts-node ./node_modules/moleculer/bin/moleculer-runner.mjs --env --config src/moleculer.config.ts",
         "tsc": "tsc"
     },
     "dependencies": {
