@@ -1,7 +1,25 @@
 [![Moleculer](https://badgen.net/badge/Powered%20by/Moleculer/0e83cd)](https://moleculer.services)
 
 # ts-mole
-This is a [Moleculer](https://moleculer.services/)-based microservices project. Generated with the [Moleculer CLI](https://moleculer.services/docs/0.14/moleculer-cli.html).
+This is a [Moleculer](https://moleculer.services/)-based microservices base project. Written in Typescript
+
+## Features
+Based on moleculer typescript template (https://github.com/moleculerjs/moleculer-template-project-typescript/tree/master/template)
+With following addtional features:  
+- [x] ESM base project
+- [x] Decorators support for Actions, Methods, Event... 
+- [x] Decorators support for Bull Queue
+- [ ] Access RDBMS using projectionjs
+- [x] Pre-configured Pretier 
+- [x] Pre-configured esLint (changes in eslint config compla) 
+- [ ] Enforment of commit follow "Semantic Commit Message" policies  (https://www.conventionalcommits.org/en/v1.0.0/) using husky and lint-staged
+- [ ] Support of a faster compiler (SWC/ESBUILD) rather TSC 
+- [ ] Auto configure (required setting should have default value)
+- [ ] Easy configuration for Jaeger/OpenTracing
+
+And lots more... 
+
+## Semantic commit message sample 
 
 ## Usage
 Start the project with `npm run dev` command. 
