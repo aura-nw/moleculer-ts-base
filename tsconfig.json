@@ -7,7 +7,7 @@
             "./test"
         ],
         "module": "ES6",
-        "outDir": ".build",
+        "outDir": "dist",
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "baseUrl": ".",
@@ -23,7 +23,7 @@
     },
     "exclude": [
         "node_modules",
-        ".build"
+        "dist"
     ],
     "ts-node": {
         "esm": true,

@@ -7,20 +7,28 @@ This is a [Moleculer](https://moleculer.services/)-based microservices base proj
 Based on moleculer typescript template (https://github.com/moleculerjs/moleculer-template-project-typescript/tree/master/template)
 With following addtional features:  
 - [x] ESM base project
-- [x] Decorators support for Actions, Methods, Event... 
-- [x] Decorators support for Bull Queue
-- [ ] Access RDBMS using projectionjs
+- [x] Decorators support for Actions, Methods, Event... (with sample)
+- [x] Decorators support for Bull Queue (with sample)
+- [ ] Access RDBMS using projectionjs (with sample)
 - [x] Pre-configured Pretier 
-- [x] Pre-configured esLint (changes in eslint config compla) 
-- [ ] Enforment of commit follow "Semantic Commit Message" policies  (https://www.conventionalcommits.org/en/v1.0.0/) using husky and lint-staged
+- [x] Pre-configured esLint (inherited from airbnb config) with some modifications) 
+- [x] EditorConfig support (https://editorconfig.org/)
+- [ ] Enforment of git commit policies:  
+    - Lint error free
+    - force pretier before commit 
+    - follow "Semantic Commit Message" policies  (https://www.conventionalcommits.org/en/v1.0.0/) using husky and lint-staged
 - [ ] Support of a faster compiler (SWC/ESBUILD) rather TSC 
-- [ ] Auto configure (required setting should have default value)
+- [ ] Auto configure (Enforcement of default value for required settings)
 - [ ] Easy configuration for Jaeger/OpenTracing
+- [ ] Easy version management for services
+- [ ] Change it to a template, so can be used with `moleculer init` 
+- [ ] Hot reload when code changes (--watch)
 
 And lots more... 
 
 ## Semantic commit message sample 
-
+Reference: 
+https://ec.europa.eu/component-library/v1.15.0/eu/docs/conventions/git/
 ## Usage
 Start the project with `npm run dev` command. 
 After starting, open the http://localhost:3000/ URL in your browser. 
@@ -34,6 +42,13 @@ In the terminal, try the following commands:
 - `call products.list` - List the products (call the `products.list` action).
 
 
+## YARN scripts
+
+- `yarn  dev`: Start development mode (load all services locally with hot-reload & REPL)
+- `yarn  start`: Start production mode (set `SERVICES` env variable to load certain services)
+- `yarn  cli`: Start a CLI and connect to production. Don't forget to set production namespace with `--ns` argument in script
+- `yarn  lint`: Run ESLint
+
 ## Services
 - **api**: API Gateway services
 - **greeter**: Sample service with `hello` and `welcome` actions.
@@ -46,15 +61,4 @@ In the terminal, try the following commands:
 ## Useful links
 
 * Moleculer website: https://moleculer.services/
-* Moleculer Documentation: https://moleculer.services/docs/0.14/
-
-## NPM scripts
-
-- `npm run dev`: Start development mode (load all services locally with hot-reload & REPL)
-- `npm run start`: Start production mode (set `SERVICES` env variable to load certain services)
-- `npm run cli`: Start a CLI and connect to production. Don't forget to set production namespace with `--ns` argument in script
-- `npm run lint`: Run ESLint
-- `npm run ci`: Run continuous test mode with watching
-- `npm test`: Run tests & generate coverage report
-- `npm run dc:up`: Start the stack with Docker Compose
-- `npm run dc:down`: Stop the stack with Docker Compose
+* Moleculer Documentation: https://moleculer.services/docs/-1.14/
