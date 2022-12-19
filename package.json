@@ -4,20 +4,26 @@
     "main": "index.js",
     "license": "MIT",
     "type": "module",
+    "_moduleAliases": {
+        "@base": "src/base"
+    },
     "scripts": {
-        "ls": "ls",
-        "start": "yarn tsc;node --es-module-specifier-resolution=node .build/index.js",
-        "ts-node": "ts-node src/index.ts",
+        "clean": "rimraf ./dist/",
+        "start": "cd dist ;  node --es-module-specifier-resolution=node ../node_modules/moleculer/bin/moleculer-runner.mjs --env --config ./moleculer.config.js",
         "dev": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.mjs --hot --repl --env --config src/moleculer.config.ts",
-        "mole1": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.js --env --config src/moleculer.config.ts",
-        "mole2": "ts-node ./node_modules/moleculer/bin/moleculer-runner.mjs --env --config src/moleculer.config.ts",
-        "tsc": "tsc"
+        "unused:mole1": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.js --env --config src/moleculer.config.ts",
+        "unused:mole2": "ts-node ./node_modules/moleculer/bin/moleculer-runner.mjs --env --config src/moleculer.config.ts",
+        "build": "yarn clean; tsc --project tsconfig.build.json"
     },
     "dependencies": {
-        "@ourparentcenter/moleculer-decorators-extended": "^1.1.1",
+        "bull": "^4.10.2",
         "dotenv": "^16.0.3",
         "ioredis": "^5.2.4",
+        "lodash-es": "^4.17.21",
         "moleculer": "^0.14.21",
+        "moleculer-bull": "^0.3.1",
+        "moleculer-decorators": "^1.3.0",
+        "reflect-metadata": "^0.1.13",
         "util": "^0.12.4"
     },
     "devDependencies": {
@@ -33,6 +39,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "moleculer-repl": "^0.7.3",
         "prettier": "^2.7.1",
+        "tsconfig-paths": "^4.1.1",
         "typescript": "^4.8.4"
     }
 }
