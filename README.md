@@ -17,9 +17,10 @@ With following addtional features:
 - [x] Pre-configured esLint (inherited from airbnb config) with some modifications)
 - [x] EditorConfig support (https://editorconfig.org/)
 - [ ] Enforment of git commit policies:
-  - Lint error free
+  - Lint error free (auto run lint for all staged file before "git commit")
   - force pretier before commit
   - follow "Semantic Commit Message" policies (https://www.conventionalcommits.org/en/v1.0.0/) using husky and lint-staged
+  - force run "yarn test" and "yarn lint" (full lint for whole repository) before push  
 - [ ] Support of a faster compiler (SWC/ESBUILD) rather TSC
 - [ ] Auto configure (Enforcement of default value for required settings)
 - [ ] Easy configuration for Jaeger/OpenTracing

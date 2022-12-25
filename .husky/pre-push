@@ -5,4 +5,4 @@
 [ -n "$CI" ] && exit 0
 
 set -eux
-npm run lint && npm run test
+yarn lint && yarn test

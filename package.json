@@ -14,7 +14,10 @@
     "unused:mole1": "ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.js --env --config src/moleculer.config.ts",
     "unused:mole2": "ts-node ./node_modules/moleculer/bin/moleculer-runner.mjs --env --config src/moleculer.config.ts",
     "build": "yarn clean; tsc --project tsconfig.build.json",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest --config jest.config.js",
+    "lint": "echo 'Running lint for repository'",
+    "test": "echo Running unit test"
   },
   "dependencies": {
     "bull": "^4.10.2",
