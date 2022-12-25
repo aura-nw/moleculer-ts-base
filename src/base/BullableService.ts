@@ -4,7 +4,6 @@ import Bull from 'bull';
 import QueueManager from '../common/bull/QueueManager';
 import BaseService from './BaseService';
 
-
 const DEFAULT_JOB_OTION: JobOptions = {
   removeOnComplete: true,
   removeOnFail: {
@@ -19,12 +18,26 @@ export default class BullableService extends BaseService {
     super(broker);
   }
 
-  public scheduleJob(queueName: string, jobType: string, payload?: any, opts?: any): Promise<Bull.Job<any>> {
+  public scheduleJob(
+    queueName: string,
+    jobType: string,
+    payload?: any,
+    opts?: any
+  ): Promise<Bull.Job<any>> {
     const jobOptions = { ...DEFAULT_JOB_OTION, ...opts };
-    return this.getQueueManager().createJob(queueName, jobType, payload, jobOptions);
+    return this.getQueueManager().createJob(
+      queueName,
+      jobType,
+      payload,
+      jobOptions
+    );
   }
 
-  public async setHandler(queueName: string, jobName: string, fn: (payload: any) => Promise<void>): Promise<void> {
+  public async setHandler(
+    queueName: string,
+    jobName: string,
+    fn: (payload: any) => Promise<void>
+  ): Promise<void> {
     this.getQueueManager().setHandler(queueName, jobName, fn);
   }
 
@@ -34,15 +47,18 @@ export default class BullableService extends BaseService {
   }
 }
 
-
-export interface JobOptions extends Bull.JobOptions { }
+export interface JobOptions extends Bull.JobOptions {}
 export interface QueueOptions {
-  queueName?: string,
-  jobType?: string,
+  queueName?: string;
+  jobType?: string;
 }
 
 export function QueueHandler(opt?: QueueOptions) {
-  return (target: any, propertyKey: string, _descriptor: PropertyDescriptor) => {
+  return (
+    target: any,
+    propertyKey: string,
+    _descriptor: PropertyDescriptor
+  ) => {
     // eslint-disable-next-line no-param-reassign
     // console.log(target.setHandler);
     if (!target.setHandler) {

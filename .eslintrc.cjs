@@ -24,19 +24,19 @@ module.exports = {
   rules: {
     eqeqeq: 2, // error
     // 'no-underscore-dangle' : ['error', {allowAfterThis: true}],
-    'no-underscore-dangle' : ['off'],
+    'no-underscore-dangle': ['off'],
     // 'max-len': ["error", { "code": 120 ,"ignoreComments": true  }],
     'class-methods-use-this': 'off',
 
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     // 'newline-per-chained-call': 'error',
-    "import/extensions": "off",
-    "import/prefer-default-export": "warn",
+    'import/extensions': 'off',
+    'import/prefer-default-export': 'warn',
     // TODO: remove rules quotes and semi, should be in prettier config. Cannot do it for now, as wrong nvim config
-    '@typescript-eslint/quotes': ["error", "single"],
-    "semi": "off",
-    "@typescript-eslint/semi": "error",
+    '@typescript-eslint/quotes': ['error', 'single'],
+    semi: 'off',
+    '@typescript-eslint/semi': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     // '@typescript-eslint/indent': ["error", 2],
@@ -56,7 +56,10 @@ module.exports = {
     ],
     '@typescript-eslint/no-explicit-any': ['warn'],
     '@typescript-eslint/no-useless-constructor': 'error',
-    '@typescript-eslint/no-use-before-define': ['error', { functions: false, classes: true }],
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, classes: true },
+    ],
     '@typescript-eslint/no-shadow': ['warn'],
     'no-throw-literal': 'off',
     '@typescript-eslint/no-throw-literal': ['error'],
@@ -71,4 +74,4 @@ module.exports = {
       { assertionStyle: 'as', objectLiteralTypeAssertions: 'never' },
     ],
   },
-}
+};

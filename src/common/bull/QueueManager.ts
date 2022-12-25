@@ -24,7 +24,11 @@ export default class QueueManager {
   /**
    * setHandler
    */
-  public async setHandler(queueName: string, jobName: string, fn: (payload: any) => Promise<void>) {
+  public async setHandler(
+    queueName: string,
+    jobName: string,
+    fn: (payload: any) => Promise<void>
+  ) {
     // TODO: avoid use any for fn here
 
     const queue = this.getQueue(queueName);
@@ -61,7 +65,7 @@ export default class QueueManager {
     queueName: string,
     jobName: string,
     payload?: any,
-    opts?: Bull.JobOptions,
+    opts?: Bull.JobOptions
   ): Promise<Bull.Job<any>> {
     if (opts) return this.getQueue(queueName).add(jobName, payload, opts);
     if (payload) return this.getQueue(queueName).add(jobName, payload);

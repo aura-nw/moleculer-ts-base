@@ -23,6 +23,6 @@
     "strictNullChecks": true,
     "stripInternal": true,
     "suppressImplicitAnyIndexErrors": true,
-    "baseUrl": ".",
+    "baseUrl": "."
   }
 }

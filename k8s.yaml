@@ -6,7 +6,7 @@ kind: ConfigMap
 metadata:
   name: common-env
 data:
-  NAMESPACE: ""
+  NAMESPACE: ''
   LOGLEVEL: info
   SERVICEDIR: dist/services
   TRANSPORTER: redis://redis:6379
@@ -71,7 +71,7 @@ spec:
             - name: SERVICES
               value: api
             - name: PORT
-              value: "3000"
+              value: '3000'
           ports:
             - containerPort: 3000
 ---

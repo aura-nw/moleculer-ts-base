@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# exit if run in CI tool
+[ -n "$CI" ] && exit 0
+
+set -eux
+npm run lint && npm run test
