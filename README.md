@@ -12,23 +12,30 @@ With following addtional features:
 - [x] ESM base project
 - [x] Decorators support for Actions, Methods, Event... (with sample)
 - [x] Decorators support for Bull Queue (with sample)
-- [ ] Access RDBMS using projectionjs (with sample)
+- [x] Access RDBMS using projectionjs (with sample)
+    - [x] With support for Soft delete
 - [x] Pre-configured Pretier
 - [x] Pre-configured esLint (inherited from airbnb config) with some modifications)
 - [x] EditorConfig support (https://editorconfig.org/)
 - [ ] Enforment of git commit policies:
-  - Lint error free (auto run lint for all staged file before "git commit")
-  - force pretier before commit
-  - follow "Semantic Commit Message" policies (https://www.conventionalcommits.org/en/v1.0.0/) using husky and lint-staged
-  - force run "yarn test" and "yarn lint" (full lint for whole repository) before push  
+  - [x] Lint error free (auto run lint for all staged file before "git commit")
+  - [x] force pretier before commit
+  - [ ] Force run [gitleaks](https://github.com/zricethezav/gitleaks) to check if in the commit has credential leaks...
+  - [x] follow "Semantic Commit Message" [policies](https://www.conventionalcommits.org/en/v1.0.0/) using husky and lint-staged
+  - [ ] force run "yarn test" and "yarn lint" (full lint for whole repository) before push
 - [ ] Support of a faster compiler (SWC/ESBUILD) rather TSC
 - [ ] Auto configure (Enforcement of default value for required settings)
 - [ ] Easy configuration for Jaeger/OpenTracing
 - [ ] Easy version management for services
 - [ ] Change it to a template, so can be used with `moleculer init`
 - [ ] Hot reload when code changes (--watch)
+- [ ] Convert to yarn2
 
 And lots more...
+
+## Open points
+
+- Cannot use module alias when importing. Need to use relative path import (it's actually problem of ESM loader with ts-node). Will try to fix later
 
 ## Semantic commit message sample
 
