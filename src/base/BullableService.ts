@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ServiceBroker } from 'moleculer';
-import Bull from 'bull';
-import QueueManager from '../common/bull/QueueManager';
+import QueueManager, {
+  Job,
+  JobOptions,
+  QueueOptions,
+} from '../common/queue/QueueManager';
 import BaseService from './BaseService';
 
 const DEFAULT_JOB_OTION: JobOptions = {
@@ -11,6 +14,10 @@ const DEFAULT_JOB_OTION: JobOptions = {
   },
 };
 
+// const BULL_REDIS_KEY = process.env.BULL_REDIS_KEY || 'BULL_REDIS_KEY';
+const DEFAULT_REDIS_URL =
+  process.env.BULL_REDIS_URL || 'redis://127.0.0.1:6379';
+
 export default class BullableService extends BaseService {
   private qm?: QueueManager;
 
@@ -18,63 +25,73 @@ export default class BullableService extends BaseService {
     super(broker);
   }
 
-  public scheduleJob(
+  public createJob(
     queueName: string,
     jobType: string,
-    payload?: any,
-    opts?: any
-  ): Promise<Bull.Job<any>> {
+    payload?: object,
+    opts?: JobOptions
+  ): Promise<Job<any>> {
     const jobOptions = { ...DEFAULT_JOB_OTION, ...opts };
     return this.getQueueManager().createJob(
       queueName,
       jobType,
-      payload,
-      jobOptions
+      jobOptions,
+      payload
     );
   }
 
   public async setHandler(
-    queueName: string,
-    jobName: string,
+    opts: QueueOptions,
     fn: (payload: any) => Promise<void>
   ): Promise<void> {
-    this.getQueueManager().setHandler(queueName, jobName, fn);
+    this.getQueueManager().setHandler(opts, fn);
   }
 
   getQueueManager(): QueueManager {
-    if (!this.qm) this.qm = QueueManager.getInstance(); // TODO: consider should we use singleton instance here or not
+    if (!this.qm) this.qm = new QueueManager(this.name);
     return this.qm;
+  }
+
+  // //////////////////////////////////////// life cycle handler
+
+  async stopped() {
+    super.stopped();
+    try {
+      await this.getQueueManager().stopAll();
+    } catch (e) {
+      this.logger.warn('Unable to stop database connection gracefully.', e);
+    }
+  }
+
+  async started() {
+    // do some initialization here
   }
 }
 
-export interface JobOptions extends Bull.JobOptions {}
-export interface QueueOptions {
-  queueName?: string;
-  jobType?: string;
-}
-
+/**
+ * Decorator functions to annotate a method as queue handler
+ */
 export function QueueHandler(opt?: QueueOptions) {
   return (
     target: any,
     propertyKey: string,
     _descriptor: PropertyDescriptor
   ) => {
-    // eslint-disable-next-line no-param-reassign
-    // console.log(target.setHandler);
     if (!target.setHandler) {
-      // console.log('cannot setHandler');
-      // console.log(` target: ${inspect(target)}, construct: ${inspect(target.constructor)}`);
-      // console.log(`propertyKey:${propertyKey}, descriptor: ${inspect(descriptor)}`);
-      // cannot apply decorator for class not extend from BullableService
       return;
     }
 
     // default queue name and job type from class and method name
-    const qOpt = opt ?? {};
-    const qName = qOpt.queueName ?? target.constructor.name;
-    const jType = qOpt.jobType ?? propertyKey;
-    console.log(`${qName}, ${jType}`);
-    // target.setHandler(qName, jType, target[propertyKey].bind(target));
-    target.setHandler(qName, jType, target[propertyKey]);
+    //
+    const defaultOpt: QueueOptions = {
+      queueName: target.constructor.name,
+      jobType: propertyKey,
+      redisUrl: DEFAULT_REDIS_URL,
+      reuseRedis: true,
+    };
+
+    const qOpt = { ...defaultOpt, ...opt };
+
+    target.setHandler(qOpt, target[propertyKey]);
   };
 }

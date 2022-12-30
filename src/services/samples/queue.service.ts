@@ -5,7 +5,7 @@ import { inspect as _inspect } from 'util';
 //
 // TODO: Not very happy with relative import,
 //  but ts-node loader does not support yet with type alias for ESM project, will try to fix later
-import BullableService, { QueueHandler } from '../base/BullableService';
+import BullableService, { QueueHandler } from '../../base/BullableService';
 
 @Service()
 export default class QueueSampleService extends BullableService {
@@ -21,25 +21,29 @@ export default class QueueSampleService extends BullableService {
   public addJob1(): string {
     const queueName = 'tuanbass';
     const jobType = 'hello';
-    this.scheduleJob(queueName, jobType, "It's a good day...");
-    return 'Hello Moleculer';
+    this.createJob(queueName, jobType, { data: "It's a good day..." });
+    return 'Job schduled';
   }
 
   @Action()
   public addJob2(): string {
-    const qName = this.name;
-    const jType = this.defaultHandler.name;
+    const qName = 'QueueSampleService'; // QueueSampleService
+    const jType = QueueSampleService.prototype.defaultHandler.name; // defaultHandler
     console.log(`${qName}, ${jType}`);
-    this.scheduleJob(qName, jType, 'Handler without specify queue option');
-    return 'Hello Moleculer';
+    this.createJob(qName, jType, {
+      data: 'Handler without specify queue option',
+    });
+    return 'Job schduled';
   }
 
   @QueueHandler({
     queueName: 'tuanbass',
     jobType: 'hello',
   })
-  private async jobHandler(_payload: string): Promise<void> {
-    console.log(`job handler: printing something to test.. ${_payload}`);
+  private async jobHandler(_payload: object): Promise<void> {
+    console.log(
+      `job handler: printing something to test.. ${JSON.stringify(_payload)}`
+    );
     console.log(
       " Do not access to `this` inside this handler, it's a limitation for the moment "
     );
@@ -50,8 +54,8 @@ export default class QueueSampleService extends BullableService {
    * If queue option is omitted, default queueName and jobType will be generated using
    * class and method name
    */
-  @QueueHandler()
-  private async defaultHandler(_payload: string): Promise<void> {
+  @QueueHandler({})
+  private async defaultHandler(_payload: object): Promise<void> {
     console.log(_payload);
   }
 }
