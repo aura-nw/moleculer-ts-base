@@ -161,7 +161,17 @@ const brokerConfig: BrokerOptions = {
   },
 
   // Enable action & event parameter validation. More info: https://moleculer.services/docs/0.14/validating.html
-  validator: Config.VALIDATOR_ENABLED || true,
+  // validator: Config.VALIDATOR_ENABLED || true,
+  validator: {
+    type: 'Fastest',
+    options: {
+      defaults: {
+        number: {
+          convert: true,
+        },
+      },
+    },
+  },
 
   // eslint-disable-next-line capitalized-comments
   /* errorHandler: (err: any, info: any) => {

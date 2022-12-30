@@ -5,16 +5,16 @@ import { Action, Service, Event } from 'moleculer-decorators';
 // import BaseService from 'src/base/BaseService';
 // TODO: Not very happy with relative import,
 //  but ts-node loader does not support yet with type alias for ESM project, will try to fix later
-import BaseService from '../base/BaseService';
+import BaseService from '../../base/BaseService';
 
 @Service()
-export default class GreeterService extends BaseService {
+export default class EventSampleService extends BaseService {
   public constructor(public broker: ServiceBroker) {
     super(broker);
   }
 
   @Action()
-  public ActionHello(): string {
+  public sayHello(): string {
     this.broker.emit<string>('eventHandler_greet', 'hello');
     return 'Hello Moleculer';
   }
@@ -22,18 +22,6 @@ export default class GreeterService extends BaseService {
   @Action()
   public ActionWelcome(ctx: Context<{ name: string }>): string {
     return `Welcome, ${JSON.stringify(ctx.params.name)}`;
-  }
-
-  // TODO: Try to eliminate duplicate declaration of params (a,b)
-  @Action({
-    cache: false,
-    params: {
-      a: 'number',
-      b: 'number',
-    },
-  })
-  public add(ctx: Context<{ a: number; b: number }>) {
-    return ctx.params.a + ctx.params.b;
   }
 
   /**

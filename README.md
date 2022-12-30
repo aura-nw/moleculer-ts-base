@@ -13,10 +13,12 @@ With following addtional features:
 - [x] Decorators support for Actions, Methods, Event... (with sample)
 - [x] Decorators support for Bull Queue (with sample)
 - [x] Access RDBMS using projectionjs (with sample)
-    - [x] With support for Soft delete
+  - [x] With support for Soft delete
 - [x] Pre-configured Pretier
 - [x] Pre-configured esLint (inherited from airbnb config) with some modifications)
 - [x] EditorConfig support (https://editorconfig.org/)
+- [x] Swagger auto-generated
+- [ ] broker.call() by static link instead of strings (easier for source code navigation: Ctrl-Click)
 - [ ] Enforment of git commit policies:
   - [x] Lint error free (auto run lint for all staged file before "git commit")
   - [x] force pretier before commit
