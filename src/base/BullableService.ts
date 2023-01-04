@@ -88,6 +88,7 @@ export function QueueHandler(opt?: QueueOptions) {
       jobType: propertyKey,
       redisUrl: DEFAULT_REDIS_URL,
       reuseRedis: true,
+      prefix: 'bull',
     };
 
     const qOpt = { ...defaultOpt, ...opt };

@@ -14,6 +14,7 @@ export interface QueueOptions {
   jobType?: string;
   redisUrl?: string;
   reuseRedis?: boolean;
+  prefix?: string;
 }
 
 const REDIS_OPT_FOR_SHARE_CONN = {
@@ -30,6 +31,7 @@ export default class QueueManager {
   private _name?: string; // for informations
 
   // static INSTANCE: QueueManager = new QueueManager('singleton');
+  prefix?: string = 'bull';
 
   constructor(name?: string) {
     this._name = name;
