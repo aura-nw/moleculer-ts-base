@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import { ServiceBroker } from 'moleculer';
-import { Action, Service } from 'moleculer-decorators';
+import {
+  Action,
+  Service,
+} from '@ourparentcenter/moleculer-decorators-extended';
 import { inspect as _inspect } from 'util';
 //
 // TODO: Not very happy with relative import,
@@ -14,8 +17,6 @@ export default class QueueSampleService extends BullableService {
   public constructor(public broker: ServiceBroker) {
     super(broker);
   }
-
-  public hello = 'hello';
 
   @Action()
   public addJob1(): string {
@@ -39,6 +40,7 @@ export default class QueueSampleService extends BullableService {
   @QueueHandler({
     queueName: 'tuanbass',
     jobType: 'hello',
+    prefix: '__testprefix',
   })
   private async jobHandler(_payload: object): Promise<void> {
     console.log(

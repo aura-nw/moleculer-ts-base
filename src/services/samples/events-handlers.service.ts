@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { ServiceBroker, Context } from 'moleculer';
 
-import { Action, Service, Event } from 'moleculer-decorators';
+import {
+  Action,
+  Service,
+  Event,
+} from '@ourparentcenter/moleculer-decorators-extended';
 // import BaseService from 'src/base/BaseService';
 // TODO: Not very happy with relative import,
 //  but ts-node loader does not support yet with type alias for ESM project, will try to fix later

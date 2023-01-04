@@ -4,6 +4,7 @@
  * API Gateway class
  * Just receive request from client, parse param and forward to coresponding bussiness Service(s)
  * PLEASE DONT PUT BUSINESS LOGIC HERE
+ *  to list : curl localhost:3000/api/ApiService/list-aliases | jq '.[] | select(.actionName| contains("PersonService.sayWelcome"))'
  */
 
 import ApiGateway from 'moleculer-web';
@@ -20,12 +21,6 @@ import BaseService from '../../base/BaseService';
         path: '/api',
         autoAliases: true, // allow generate rest info (GET/PUT/POST...) in the services
         mappingPolicy: 'restrict', // allow action called with exact method
-        // aliases: {
-        //   'GET /api/openapi/openapi.json': 'openapi.generateDocs', // swagger scheme
-        //   'GET /ui': 'openapi.ui', // ui
-        //   'GET /api/openapi/assets/:file': 'openapi.assets', // js/css files
-        //   'GET /hello1': 'openapi.ui', // js/css files
-        // },
       },
     ],
   },
