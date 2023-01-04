@@ -1,10 +1,11 @@
 import { Model } from 'objection';
 import CustomQueryBuilder from './CustomQueryBuilder';
+import knex from '../common/utils/db';
 
 export default class BaseModel extends Model {
   static QueryBuilder = CustomQueryBuilder;
 
-  public static softDelete = true;
+  static softDelete = true;
 
   static delColumn = 'delete_at';
 
@@ -31,3 +32,5 @@ export default class BaseModel extends Model {
   //     return super.query(trxOrKnex);
   //   }
 }
+
+BaseModel.knex(knex);

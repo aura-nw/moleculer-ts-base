@@ -20,5 +20,4 @@ export default class Person extends BaseModel {
 
   // age: number | undefined = 0;
 }
-
 export type PersonPoJo = ModelObject<Person>;
