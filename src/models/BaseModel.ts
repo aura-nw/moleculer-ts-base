@@ -1,17 +1,17 @@
 import { Model } from 'objection';
 import CustomQueryBuilder from './CustomQueryBuilder';
-import knex from '../common/utils/db';
+import knex from '../common/utils/db-connection';
 
 export default class BaseModel extends Model {
   static QueryBuilder = CustomQueryBuilder;
 
-  static softDelete = true;
+  static softDelete = true; // by default, all models are soft deleted
 
   static delColumn = 'delete_at';
 
-  static customMethod() {
-    console.log('base customMethod');
-  }
+  // static customMethod() {
+  //   console.log('base customMethod');
+  // }
 
   static isSoftDelete() {
     return this.softDelete;

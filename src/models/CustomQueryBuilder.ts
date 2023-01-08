@@ -2,7 +2,7 @@
 /* eslint-disable max-classes-per-file */
 // import {Knex} from 'knex';
 import { MaybeCompositeId, Model, Page, QueryBuilder } from 'objection';
-import knex from '../common/utils/db';
+import knex from '../common/utils/db-connection';
 // import BaseModel from './BaseModel';
 
 //
@@ -26,7 +26,7 @@ export default class CustomQueryBuilder<
   deleteById(id: MaybeCompositeId, forceDelete = false) {
     if (this.isHardDel(forceDelete)) return super.deleteById(id);
 
-    return this.softDel();
+    return this.softDel().whereRaw(`id = ${id}`);
   }
 
   whereDeleted() {
@@ -58,6 +58,9 @@ export default class CustomQueryBuilder<
     const patchData = {};
     patchData[this.getDelColum()] = knex.fn.now();
     return this.patch(patchData);
+    // const res = this.patch(patchData);
+    // console.log(JSON.stringify(res));
+    // return res;
   }
 }
 
