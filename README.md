@@ -12,13 +12,14 @@ With following addtional features:
 - [x] ESM base project
 - [x] Decorators support for Actions, Methods, Event... (with sample)
 - [x] Decorators support for Bull Queue (with sample)
+- [x] Swagger auto-generated from decorators
 - [x] Access RDBMS using projectionjs (with sample)
   - [x] With support for Soft delete
 - [x] Pre-configured Pretier
 - [x] Pre-configured esLint (inherited from airbnb config) with some modifications)
 - [x] EditorConfig support (https://editorconfig.org/)
-- [x] Swagger auto-generated
 - [ ] broker.call() by static link instead of strings (easier for source code navigation: Ctrl-Click)
+- [ ] Unit test with jest
 - [ ] Enforment of git commit policies:
   - [x] Lint error free (auto run lint for all staged file before "git commit")
   - [x] force pretier before commit
@@ -38,6 +39,7 @@ And lots more...
 ## Open points
 
 - Cannot use module alias when importing. Need to use relative path import (it's actually problem of ESM loader with ts-node). Will try to fix later
+- QueueHander: Cannot acess "this" inside queue handler. If you need to access "this", include it in the payload when creating jobs
 
 ## Semantic commit message sample
 

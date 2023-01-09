@@ -12,6 +12,15 @@ const config: { [key: string]: Knex.Config } = {
       password: '123456',
     },
   },
+  test: {
+    client: 'mysql',
+    connection: {
+      database: 'objection',
+      host: '172.17.0.2',
+      user: 'root',
+      password: '123456',
+    },
+  },
   production: {
     client: 'mysql',
     connection: {
