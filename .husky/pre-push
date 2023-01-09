@@ -2,6 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # exit if run in CI tool
+# Place holder, but this project should not not be pushed to git using CI tool
 [ -n "$CI" ] && exit 0
 
 set -eux
