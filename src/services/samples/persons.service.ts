@@ -43,7 +43,7 @@ export default class PersonService extends BaseService {
 
   @Delete('/del/:id', {
     openapi: {
-      summary: 'Delete a person knowing is id',
+      summary: 'Delete a person knowing its id',
       responses: {
         200: {
           description: 'delete success',
