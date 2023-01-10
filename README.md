@@ -15,23 +15,24 @@ With following addtional features:
 - [x] Swagger auto-generated from decorators
 - [x] Access RDBMS using projectionjs (with sample)
   - [x] With support for Soft delete
-- [x] Pre-configured Pretier
-- [x] Pre-configured esLint (inherited from airbnb config) with some modifications)
-- [x] EditorConfig support (https://editorconfig.org/)
+- [ ] Code quality tools
+  - [x] EditorConfig support (https://editorconfig.org/)
+  - [x] Pre-configured Pretier
+  - [x] Pre-configured esLint (inherited from airbnb config) with some modifications)
 - [ ] broker.call() by static link instead of strings (easier for source code navigation: Ctrl-Click)
-- [ ] Unit test with jest
+- [x] Unit test with jest
 - [ ] Enforment of git commit policies:
   - [x] Lint error free (auto run lint for all staged file before "git commit")
   - [x] force pretier before commit
   - [ ] Force run [gitleaks](https://github.com/zricethezav/gitleaks) to check if in the commit has credential leaks...
   - [x] follow "Semantic Commit Message" [policies](https://www.conventionalcommits.org/en/v1.0.0/) using husky and lint-staged
-  - [ ] force run "yarn test" and "yarn lint" (full lint for whole repository) before push
+  - [x] force run "yarn test" and "yarn lint" (full lint for whole repository) before push
 - [ ] Support of a faster compiler (SWC/ESBUILD) rather TSC
 - [ ] Auto configure (Enforcement of default value for required settings)
 - [ ] Easy configuration for Jaeger/OpenTracing
 - [ ] Easy version management for services
 - [ ] Change it to a template, so can be used with `moleculer init`
-- [ ] Hot reload when code changes (--watch)
+- [x] Hot reload when code changes (--watch)
 - [ ] Convert to yarn2
 
 And lots more...
