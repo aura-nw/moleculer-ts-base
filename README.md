@@ -34,6 +34,9 @@ With following addtional features:
 - [ ] Change it to a template, so can be used with `moleculer init`
 - [x] Hot reload when code changes (--watch)
 - [ ] Convert to yarn2
+- [ ] Samples for authentication
+- [ ] bullboard
+- [ ] yarn test only few branches
 
 And lots more...
 
