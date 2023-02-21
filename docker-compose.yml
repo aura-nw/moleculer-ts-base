@@ -25,7 +25,7 @@ services:
     env_file: docker-compose.env
     environment:
       SERVICEDIR: src/services/
-      SERVICES: "**/*.service.js"
+      SERVICES: '**/*.service.js'
     depends_on:
       - redis
     networks:

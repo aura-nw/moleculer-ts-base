@@ -1,4 +1,4 @@
-import { expect } from '@jest/globals';
+// import { expect } from '@jest/globals';
 
 import { Describe, BeforeAll, Test, AfterAll } from '@jest-decorated/core';
 import { ServiceBroker } from 'moleculer';
@@ -26,7 +26,6 @@ export default class PersonTest {
   @AfterAll()
   tearDown() {
     this.broker.stop();
-    knex.destroy();
   }
 
   @Test('list all persons')

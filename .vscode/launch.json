@@ -11,11 +11,11 @@
       "runtimeExecutable": "ts-node",
       "program": "${workspaceRoot}/node_modules/moleculer/bin/moleculer-runner.mjs",
       "sourceMaps": true,
-      "runtimeArgs": [ "-r", "ts-node/register"],
+      "runtimeArgs": ["-r", "ts-node/register"],
       "cwd": "${workspaceRoot}",
       "args": ["--env", "src/services/**/*.service.ts"]
       //ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.mjs --hot --repl --env --config src/moleculer.config.ts",
-    },
+    }
     // {
     //   "type": "node",
     //   "request": "launch",
