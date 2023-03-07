@@ -49,7 +49,7 @@ export default class QueueSampleService extends BullableService {
     console.log(
       " Do not access to `this` inside this handler, it's a limitation for the moment "
     );
-    // console.log(this.name) => IT WILL FAIL
+    console.log(`now I can access to this: ${this.name}`); //= > IT WILL FAIL
   }
 
   /**
@@ -59,5 +59,9 @@ export default class QueueSampleService extends BullableService {
   @QueueHandler({})
   private async defaultHandler(_payload: object): Promise<void> {
     console.log(_payload);
+  }
+
+  async started() {
+    // do some initialization here
   }
 }
