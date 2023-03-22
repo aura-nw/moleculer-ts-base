@@ -27,7 +27,7 @@ module.exports = {
     eqeqeq: 2, // error
     // 'no-underscore-dangle' : ['error', {allowAfterThis: true}],
     'no-underscore-dangle': ['off'],
-    'max-classes-per-file': 'warn',
+    'max-classes-per-file': ['warn', { max: 3 }],
     // 'max-len': ["error", { "code": 120 ,"ignoreComments": true  }],
     'class-methods-use-this': 'off',
     'no-plusplus': 'off',
@@ -36,7 +36,7 @@ module.exports = {
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     // 'newline-per-chained-call': 'error',
     'import/extensions': 'off',
-    'import/prefer-default-export': 'warn',
+    'import/prefer-default-export': 'off',
     // TODO: remove rules quotes and semi, should be in prettier config. Cannot do it for now, as wrong nvim config
     '@typescript-eslint/quotes': ['error', 'single'],
     semi: 'off',
