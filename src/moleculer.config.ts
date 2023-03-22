@@ -57,8 +57,7 @@ const brokerConfig: BrokerOptions = {
       // Line formatter. It can be "json", "short", "simple", "full", a `Function` or a template string like "{timestamp} {level} {nodeID}/{mod}: {msg}"
       formatter: Config.LOGGERFORMATTER || 'full',
       // Custom object printer. If not defined, it uses the `util.inspect` method.
-      objectPrinter: (o: never) =>
-        inspect(o, { depth: 4, colors: true, breakLength: 100 }),
+      objectPrinter: (o: never) => inspect(o, { depth: 4, colors: true, breakLength: 100 }),
       // Auto-padding the module name in order to messages begin at the same column.
       autoPadding: Config.LOGGERAUTOPADDING || false,
     },
@@ -98,8 +97,7 @@ const brokerConfig: BrokerOptions = {
     // Backoff factor for delay. 2 means exponential backoff.
     factor: Config.RETRYFACTOR,
     // A function to check failed requests.
-    check: (err: Error): boolean =>
-      err && err instanceof MoleculerRetryableError && !!err.retryable,
+    check: (err: Error): boolean => err && err instanceof MoleculerRetryableError && !!err.retryable,
   },
 
   // Limit of calling level. If it reaches the limit, broker will throw an MaxCallLevelError error. (Infinite loop protection)
@@ -146,8 +144,7 @@ const brokerConfig: BrokerOptions = {
     // Number of milliseconds to switch from open to half-open state
     halfOpenTime: Config.HALFOPENTIME || 10 * 1000,
     // A function to check failed requests.
-    check: (err: Error): boolean =>
-      err && err instanceof MoleculerRetryableError && err.code >= 500,
+    check: (err: Error): boolean => err && err instanceof MoleculerRetryableError && err.code >= 500,
   },
 
   // Settings of bulkhead feature. More info: https://moleculer.services/docs/0.14/fault-tolerance.html#Bulkhead

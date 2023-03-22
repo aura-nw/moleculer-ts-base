@@ -22,15 +22,10 @@ export const Summary = function (summary: string) {
 
 // TODO: WIP, experiment only, bug when changes order of Summary and Response in action declaration
 // Refactor with lodash
-export const Response = function (
-  code: number,
-  description: string,
-  responseObject: any
-) {
+export const Response = function (code: number, description: string, responseObject: any) {
   return (target: any, _key: string, _descriptor: PropertyDescriptor) => {
     // define response entry
-    if (!target.actions[_key][openApiKey]['responses'])
-      target.actions[_key][openApiKey]['responses'] = {};
+    if (!target.actions[_key][openApiKey]['responses']) target.actions[_key][openApiKey]['responses'] = {};
 
     // let obj = target.actions[_key][openApiKey]['responses'][code] || {};
     const obj = {

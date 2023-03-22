@@ -6,10 +6,7 @@ import knex from '../common/utils/db-connection';
 // import BaseModel from './BaseModel';
 
 //
-export default class CustomQueryBuilder<
-  M extends Model,
-  R = M[]
-> extends QueryBuilder<M, R> {
+export default class CustomQueryBuilder<M extends Model, R = M[]> extends QueryBuilder<M, R> {
   ArrayQueryBuilderType!: CustomQueryBuilder<M, M[]>;
 
   SingleQueryBuilderType!: CustomQueryBuilder<M, M>;
@@ -30,15 +27,11 @@ export default class CustomQueryBuilder<
   }
 
   whereDeleted() {
-    return this.whereNotNull(
-      `${this.modelClass().tableName}.${this.getDelColum()}`
-    );
+    return this.whereNotNull(`${this.modelClass().tableName}.${this.getDelColum()}`);
   }
 
   whereNotDeleted() {
-    return this.whereNull(
-      `${this.modelClass().tableName}.${this.getDelColum()}`
-    );
+    return this.whereNull(`${this.modelClass().tableName}.${this.getDelColum()}`);
   }
 
   // Private ultility functions

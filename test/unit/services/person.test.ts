@@ -30,9 +30,7 @@ export default class PersonTest {
 
   @Test('list all persons')
   public async testListPerson() {
-    const res = (await this.broker.call(
-      'PersonService.listPerson'
-    )) as object[];
+    const res = (await this.broker.call('PersonService.listPerson')) as object[];
     expect(res.length).toBe(4);
   }
 

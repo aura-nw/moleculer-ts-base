@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { ServiceBroker, Context } from 'moleculer';
 
-import {
-  Action,
-  Service,
-  Event,
-} from '@ourparentcenter/moleculer-decorators-extended';
+import { Action, Service, Event } from '@ourparentcenter/moleculer-decorators-extended';
 // import BaseService from 'src/base/BaseService';
 // TODO: Not very happy with relative import,
 //  but ts-node loader does not support yet with type alias for ESM project, will try to fix later
@@ -37,11 +33,7 @@ export default class EventSampleService extends BaseService {
   })
   // run in CLI:
   //    mol$ emit eventHandler_greet_nocontext --abc=1 --def=2
-  eventHandler_greet_nocontext(
-    payload: string,
-    sender: string,
-    eventName: string
-  ) {
+  eventHandler_greet_nocontext(payload: string, sender: string, eventName: string) {
     this.logger.info(`payload is ${JSON.stringify(payload)}`);
     this.logger.info(`sender is ${JSON.stringify(sender)}`);
     this.logger.info(`eventName is ${JSON.stringify(eventName)}`);

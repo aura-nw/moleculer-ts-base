@@ -19,7 +19,9 @@ export default class MathTest {
 
   @Test('Test of Sub action in normal case ')
   public async testSub_normal() {
+    process.env.HELLO_MATH = 'hello';
     const res = await this.broker.call('SimpleMathService.sub', { a: 3, b: 2 });
+    console.log(process.env.HELLO_MATH);
     expect(res).toBe(1);
   }
 

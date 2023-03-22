@@ -1,12 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { ServiceBroker, Context } from 'moleculer';
 
-import {
-  Delete,
-  Get,
-  Post,
-  Service,
-} from '@ourparentcenter/moleculer-decorators-extended';
+import { Delete, Get, Post, Service } from '@ourparentcenter/moleculer-decorators-extended';
 // import BaseService from 'src/base/BaseService';
 // TODO: Not very happy with relative import,
 //  but ts-node loader does not support yet with type alias for ESM project, will try to fix later
@@ -33,9 +28,7 @@ export default class PersonService extends BaseService {
       id: { type: 'number' },
     },
   })
-  public async personbyId(
-    ctx: Context<{ id: number }>
-  ): Promise<Person | undefined> {
+  public async personbyId(ctx: Context<{ id: number }>): Promise<Person | undefined> {
     const userId = ctx.params.id;
     return Person.query().findById(userId);
     // return `Welcome, ${JSON.stringify(ctx.params.name)}`;
@@ -85,9 +78,7 @@ export default class PersonService extends BaseService {
       lastName: { type: 'string' },
     },
   })
-  public async add(
-    ctx: Context<{ firstName: string; lastName: string }>
-  ): Promise<Person> {
+  public async add(ctx: Context<{ firstName: string; lastName: string }>): Promise<Person> {
     // return `Welcome, ${JSON.stringify(ctx.params.name)}`;
 
     this.logger.info('In add method', ctx.params.firstName);
