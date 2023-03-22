@@ -27,8 +27,10 @@ module.exports = {
     eqeqeq: 2, // error
     // 'no-underscore-dangle' : ['error', {allowAfterThis: true}],
     'no-underscore-dangle': ['off'],
+    'max-classes-per-file': 'warn',
     // 'max-len': ["error", { "code": 120 ,"ignoreComments": true  }],
     'class-methods-use-this': 'off',
+    'no-plusplus': 'off',
 
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
@@ -42,6 +44,16 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     // '@typescript-eslint/indent': ["error", 2],
+    //
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'parameter',
+        modifiers: ['unused'],
+        format: ['camelCase'],
+        leadingUnderscore: 'allow',
+      },
+    ],
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/no-empty-interface': [
       'error',
@@ -58,10 +70,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-explicit-any': ['warn'],
     '@typescript-eslint/no-useless-constructor': 'error',
-    '@typescript-eslint/no-use-before-define': [
-      'error',
-      { functions: false, classes: true },
-    ],
+    '@typescript-eslint/no-use-before-define': ['error', { functions: false, classes: true }],
     '@typescript-eslint/no-shadow': ['warn'],
     'no-throw-literal': 'off',
     '@typescript-eslint/no-throw-literal': ['error'],
