@@ -1,9 +1,6 @@
 /* eslint-disable no-console */
 import { ServiceBroker } from 'moleculer';
-import {
-  Action,
-  Service,
-} from '@ourparentcenter/moleculer-decorators-extended';
+import { Action, Service } from '@ourparentcenter/moleculer-decorators-extended';
 import { inspect as _inspect } from 'util';
 //
 // TODO: Not very happy with relative import,
@@ -12,6 +9,8 @@ import BullableService, { QueueHandler } from '../../base/BullableService';
 
 @Service()
 export default class QueueSampleService extends BullableService {
+  _count = 0;
+
   public static instanceCreation: any[] = [];
 
   public constructor(public broker: ServiceBroker) {
@@ -21,8 +20,8 @@ export default class QueueSampleService extends BullableService {
   @Action()
   public addJob1(): string {
     const queueName = 'tuanbass';
-    const jobType = 'hello';
-    this.createJob(queueName, jobType, { data: "It's a good day..." });
+    const jobName = 'hello';
+    this.createJob(queueName, jobName, { msg: "It's a good day..." });
     return 'Job schduled';
   }
 
@@ -39,17 +38,16 @@ export default class QueueSampleService extends BullableService {
 
   @QueueHandler({
     queueName: 'tuanbass',
-    jobType: 'hello',
-    prefix: '__testprefix',
+    jobName: 'hello',
+    concurrency: 3,
+    // prefix: '__testprefix',
   })
   private async jobHandler(_payload: object): Promise<void> {
-    console.log(
-      `job handler: printing something to test.. ${JSON.stringify(_payload)}`
-    );
-    console.log(
-      " Do not access to `this` inside this handler, it's a limitation for the moment "
-    );
-    console.log(`now I can access to this: ${this.name}`); //= > IT WILL FAIL
+    console.log(`job handler: printing something to test.. ${JSON.stringify(_payload)}`);
+    console.log(`now I can access to this.name: ${this.name}`);
+    if (this._count++ % 3 === 0) {
+      throw new Error(`This is a custom error ${this._count}`);
+    }
   }
 
   /**
