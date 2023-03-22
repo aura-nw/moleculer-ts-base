@@ -39,7 +39,8 @@
   },
   "dependencies": {
     "@ourparentcenter/moleculer-decorators-extended": "^1.1.1",
-    "bull": "^4.10.2",
+    "@types/underscore": "^1.11.4",
+    "bullmq": "^3.0.0",
     "dotenv": "^16.0.3",
     "ioredis": "^5.2.4",
     "knex": "^2.3.0",
@@ -50,6 +51,7 @@
     "mysql": "^2.18.1",
     "objection": "^3.0.1",
     "reflect-metadata": "^0.1.13",
+    "underscore": "^1.13.6",
     "util": "^0.12.4"
   },
   "devDependencies": {
@@ -57,10 +59,10 @@
     "@jest-decorated/core": "^0.1.7",
     "@jest/globals": "^29.3.1",
     "@tsconfig/node16": "^1.0.3",
+    "@types/jest-when": "^3.5.2",
     "@types/node": "^18.11.11",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
-    "@types/jest-when": "^3.5.2",
     "eslint": "^8.25.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
