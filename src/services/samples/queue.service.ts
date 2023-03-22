@@ -21,7 +21,7 @@ export default class QueueSampleService extends BullableService {
   public addJob1(): string {
     const queueName = 'tuanbass';
     const jobName = 'hello';
-    this.createJob(queueName, jobName, { msg: "It's a good day..." });
+    this.createJob(queueName, jobName, { msg: 'It is a good day...' });
     return 'Job schduled';
   }
 
@@ -42,6 +42,12 @@ export default class QueueSampleService extends BullableService {
     concurrency: 3,
     // prefix: '__testprefix',
   })
+  /**
+   * declare a queue handler
+   * Redis configuration should be set in environment : export QUEUE_JOB_REDIS="redis://localhost:6380
+   * if not set, it will default to localost: 6379
+   * @param _payload -
+   */
   private async jobHandler(_payload: object): Promise<void> {
     console.log(`job handler: printing something to test.. ${JSON.stringify(_payload)}`);
     console.log(`now I can access to this.name: ${this.name}`);

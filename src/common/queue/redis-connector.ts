@@ -7,19 +7,28 @@ import { RedisOptions } from 'bullmq';
 // export default redisConnection;
 
 export function getRedisConnection(path?: string): RedisOptions {
-  return getIORedisInstance(path);
+  // TODO: it could be better to get the data from other instead of fixed in process environment
+  let _path = path ?? process.env.QUEUE_JOB_REDIS;
+  _path = _path ?? '';
+
+  const res = getIORedisInstance(_path);
+  return res;
 }
 
-function getIORedisInstance(path?: string): RedisOptions {
-  const _path = path ?? 'redis://localhost:6379';
-  const url = new URL(_path);
+function getIORedisInstance(path: string): RedisOptions {
+  try {
+    const url = new URL(path);
+    return {
+      host: url.hostname,
+      port: parseInt(url.port, 10) || 6379,
+    };
+  } catch (e) {
+    return {
+      host: 'localhost',
+      port: 6379,
+    };
+  }
 
-  const res = {
-    host: url.hostname || 'localhost',
-    port: parseInt(url.port, 10) || 6379,
-  };
-
-  return res;
   // if (_ioRedis) return _ioRedis;
   //
   // // no redisconnection, create one
