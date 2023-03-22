@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { JobsOptions } from 'bullmq';
-import { QueueHandlerFunc, QueueOptions, QueueProvider } from './queue-manager.d';
+import { QueueHandlerFunc, QueueOptions, QueueProvider } from './queue-manager-types';
 
 // TODO: remove this harded code
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -13,7 +13,7 @@ const _redisCnn = {
 };
 
 // TODO: Just placeholder, not implemented for BullJS yet
-export default class BullJsProvider implements QueueProvider {
+export class BullJsProvider implements QueueProvider {
   stopAll(): void {
     throw new Error('Method not implemented.');
   }

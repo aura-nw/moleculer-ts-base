@@ -1,17 +1,7 @@
 import { Job, Queue, Worker, WorkerOptions } from 'bullmq';
 import _ from 'underscore';
-import { JobOption, QueueOptions, QueueProvider } from './queue-manager.d';
+import { JobOption, QueueOptions, QueueProvider } from './queue-manager-types';
 import { getRedisConnection } from './redis-connector';
-
-// TODO: remove this harded code
-// const redisCnn = {
-//   connection: {
-//     host: 'localhost',
-//     port: 6379,
-//   },
-// };
-
-// const redisCnn = getRedisConnection(process.env.BULLMQ_REDIS);
 
 class DefaultValue {
   static readonly DEFAULT_JOB_NAME = '_default_bull_job';

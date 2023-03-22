@@ -1,4 +1,5 @@
 /* eslint-disable max-classes-per-file */
+
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -7,7 +8,7 @@ import { JobsOptions } from 'bullmq';
 import { BeeQueueProvider } from './bee-provider';
 import { BullJsProvider } from './bulljs-provider';
 import { BullQueueProvider } from './bullmq-provider';
-import { QueueOptions, QueueProvider, QueueProviderType } from './queue-manager.d';
+import { QueueOptions, QueueProvider, QueueProviderType } from './queue-manager-types';
 
 export default class QueueManager {
   private _queueProvider: QueueProvider;

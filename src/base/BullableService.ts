@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ServiceBroker } from 'moleculer';
 import _ from 'underscore';
+import QueueManager from '../common/queue/queue-manager';
 
-import QueueManager, { JobOption, QueueOptions } from '../common/queue/queue-manager';
+import { JobOption, QueueOptions } from '../common/queue/queue-manager-types';
 import BaseService from './BaseService';
 
 // const BULL_REDIS_KEY = process.env.BULL_REDIS_KEY || 'BULL_REDIS_KEY';
-const DEFAULT_REDIS_URL = process.env.BULL_REDIS_URL || 'redis://127.0.0.1:6379';
 
 export default class BullableService extends BaseService {
   private qm?: QueueManager;
@@ -56,8 +56,6 @@ export function QueueHandler(opt: Partial<QueueOptions>) {
     const qOpt = _.defaults(opt, {
       queueName: target.constructor.name,
       jobType: propertyKey,
-      redisUrl: DEFAULT_REDIS_URL,
-      reuseRedis: true,
       prefix: 'bull',
     });
 

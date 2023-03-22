@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { JobsOptions } from 'bullmq';
-import { QueueHandlerFunc, QueueOptions, QueueProvider } from './queue-manager.d';
+import { QueueHandlerFunc, QueueOptions, QueueProvider } from './queue-manager-types';
 
-export default class BeeQueueProvider implements QueueProvider {
+export class BeeQueueProvider implements QueueProvider {
   stopAll(): void {
     throw new Error('Method not implemented.');
   }
