@@ -39,6 +39,10 @@ import BaseService from '../../base/BaseService';
           },
         },
       },
+      // Uncomment if you want to use security for all endpoint
+      // security: [
+      //   {BearerAuth:[]}         // use the same name as above
+      // ]
     },
   },
 })

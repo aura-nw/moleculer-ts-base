@@ -48,6 +48,9 @@ export default class GreeterService extends BaseService {
   @Get('/sayWelcome', {
     openapi: {
       summary: 'Say welcom to a persons',
+      security: [
+        { BearerAuth: [] }, // use the same name as above
+      ],
     },
     params: {
       name: { type: 'string', min: 5 },
