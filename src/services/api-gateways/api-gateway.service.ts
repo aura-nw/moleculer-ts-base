@@ -52,6 +52,31 @@ import BaseService from '../../base/BaseService';
         authorization: true,
         authentication: true,
       },
+      {
+        path: '/upload',
+
+        // You should disable body parsers
+        bodyParsers: {
+          json: false,
+          urlencoded: false,
+        },
+        // authorization: true,
+        // authentication: true,
+        aliases: {
+          // File upload from HTML form
+          'POST /photos': 'multipart:v1.file.save',
+        },
+
+        // https://github.com/mscdex/busboy#busboy-methods
+        busboyConfig: {
+          limits: {
+            files: 1,
+            fileSize: 10000000,
+          },
+        },
+
+        mappingPolicy: 'restrict',
+      },
     ],
     // empty cors object will have moleculer to generate handler for preflight request and CORS header which allow all origin
     cors: {},
