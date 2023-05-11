@@ -18,9 +18,14 @@ export function getRedisConnection(path?: string): RedisOptions {
 function getIORedisInstance(path: string): RedisOptions {
   try {
     const url = new URL(path);
+    const db = url.pathname ? parseInt(url.pathname.substr(1), 10) : 0;
+
     return {
       host: url.hostname,
       port: parseInt(url.port, 10) || 6379,
+      username: url.username,
+      password: url.password,
+      db,
     };
   } catch (e) {
     return {
