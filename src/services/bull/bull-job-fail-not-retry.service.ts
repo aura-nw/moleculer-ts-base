@@ -71,7 +71,9 @@ export default class CrawlBlockService extends BullableService {
 
   async _start(): Promise<void> {
     // create job retry 5 times, every 1000ms, and remove job if count fail = 300
-    const queueEvents = new QueueEvents('QueueA');
+    // const queueEvents = new QueueEvents('QueueA', { connection: { host: 'localhost', port: 8888 } });
+    const queueEvents = this.getQueueManager().getQueueEventsListener('QueueA') as QueueEvents;
+
     queueEvents.on('failed', (jobId, _err) => {
       this.logger.info('queue event failed', jobId);
     });

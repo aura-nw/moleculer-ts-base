@@ -14,6 +14,10 @@ const _redisCnn = {
 
 // TODO: Just placeholder, not implemented for BullJS yet
 export class BullJsProvider implements QueueProvider {
+  getQueueEventsListener(queueName: string): unknown {
+    throw new Error('Method not implemented.');
+  }
+
   stopAll(): void {
     throw new Error('Method not implemented.');
   }

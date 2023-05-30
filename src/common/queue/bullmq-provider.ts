@@ -1,4 +1,4 @@
-import { Job, Queue, Worker, WorkerOptions } from 'bullmq';
+import { Job, Queue, QueueEvents, Worker, WorkerOptions } from 'bullmq';
 import _ from 'underscore';
 import { JobOption, QueueOptions, QueueProvider } from './queue-manager-types';
 import { getRedisConnection } from './redis-connector';
@@ -56,24 +56,30 @@ export class BullQueueProvider implements QueueProvider {
    * @param name - Name of the queue
    * @returns
    */
-  private getQueue(name: string): Queue {
+  private getQueue(name: string, path?: string): Queue {
     if (!this._queues[name]) {
       // queue not exist create and cache it
-      this._queues[name] = new Queue(name, { connection: getRedisConnection() });
+      this._queues[name] = new Queue(name, { connection: getRedisConnection(path) });
     }
 
     return this._queues[name];
   }
+
+  getQueueEventsListener(queueName: string, path?: string): QueueEvents {
+    const redisCnn = getRedisConnection(path);
+    const queueEvents = new QueueEvents(queueName, { connection: redisCnn });
+    return queueEvents;
+  }
+  // function getRedisConnection(): import('bullmq').ConnectionOptions {
+  //   const redisCnn = {
+  //       host: 'localhost',
+  //       port: 6379,
+  //       // port: 6379,
+  //   };
+  //   // const redisCnn = {
+  //   //   path: "127.0.0.1:6379"
+  //   // };
+  //   // return redisCnn;
+  //   let redis = !!path? new IORedis(path): new IORedis();
+  // }
 }
-// function getRedisConnection(): import('bullmq').ConnectionOptions {
-//   const redisCnn = {
-//       host: 'localhost',
-//       port: 6379,
-//       // port: 6379,
-//   };
-//   // const redisCnn = {
-//   //   path: "127.0.0.1:6379"
-//   // };
-//   // return redisCnn;
-//   let redis = !!path? new IORedis(path): new IORedis();
-// }
