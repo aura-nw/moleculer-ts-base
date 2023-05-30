@@ -7,6 +7,7 @@
     {
       "type": "node",
       "request": "launch",
+      "runtimeVersion": "16.14.0",
       "name": "Debug",
       "runtimeExecutable": "ts-node",
       "program": "${workspaceRoot}/node_modules/moleculer/bin/moleculer-runner.mjs",
@@ -14,7 +15,6 @@
       "runtimeArgs": ["-r", "ts-node/register"],
       "cwd": "${workspaceRoot}",
       "args": ["--env", "src/services/**/*.service.ts"]
-      //ts-node -r tsconfig-paths/register ./node_modules/moleculer/bin/moleculer-runner.mjs --hot --repl --env --config src/moleculer.config.ts",
     }
     // {
     //   "type": "node",
