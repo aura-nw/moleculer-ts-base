@@ -3,6 +3,10 @@ import { JobsOptions } from 'bullmq';
 import { QueueHandlerFunc, QueueOptions, QueueProvider } from './queue-manager-types';
 
 export class BeeQueueProvider implements QueueProvider {
+  getQueueEventsListener(queueName: string): unknown {
+    throw new Error('Method not implemented.');
+  }
+
   stopAll(): void {
     throw new Error('Method not implemented.');
   }

@@ -13,6 +13,7 @@ export type JobOption = JobsOptions;
 
 /* abstract interface to decouple the queue manager from the queue implemenation (bull, bee..) */
 export interface QueueProvider {
+  getQueueEventsListener(queueName: string): unknown;
   stopAll(): void;
   submitJob(queueName: string, jobName?: string, opts?: JobOption, payload?: object): void;
   registerQueueHandler(opt: QueueOptions, fn: QueueHandlerFunc): void;
@@ -25,3 +26,5 @@ export enum QueueProviderType {
   bullJs = 2,
   bee = 3,
 }
+
+export { QueueEvents as QueueEventsListener } from 'bullmq';

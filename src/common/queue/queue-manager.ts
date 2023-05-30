@@ -88,4 +88,8 @@ export default class QueueManager {
   public stopAll(): void {
     this._queueProvider.stopAll();
   }
+
+  getQueueEventsListener(queueName: string) {
+    return this._queueProvider.getQueueEventsListener(queueName);
+  }
 }
