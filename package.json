@@ -38,6 +38,7 @@
     "ext": "ts, js"
   },
   "dependencies": {
+    "@aura-nw/aura-ts-toolkit": "^0.0.11",
     "@ourparentcenter/moleculer-decorators-extended": "^1.1.1",
     "@types/underscore": "^1.11.4",
     "bullmq": "^3.0.0",

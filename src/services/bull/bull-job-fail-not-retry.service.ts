@@ -1,7 +1,7 @@
 import { Action, Service } from '@ourparentcenter/moleculer-decorators-extended';
 import { ServiceBroker } from 'moleculer';
-import { QueueEventsListener } from 'src/common/queue/queue-manager-types';
-import BullableService, { QueueHandler } from '../../base/BullableService';
+import { QueueEventsListener, QueueHandler } from '@aura-nw/aura-ts-toolkit';
+import BullableService from '../../base/BullableService';
 
 @Service()
 export default class CrawlBlockService extends BullableService {
