@@ -1,7 +1,7 @@
 import { Action, Service } from '@ourparentcenter/moleculer-decorators-extended';
-import { QueueEvents } from 'bullmq';
 import { ServiceBroker } from 'moleculer';
-import BullableService, { QueueHandler } from '../../base/BullableService';
+import { QueueEventsListener, QueueHandler } from '@aura-nw/aura-ts-toolkit';
+import BullableService from '../../base/BullableService';
 
 @Service()
 export default class CrawlBlockService extends BullableService {
@@ -72,7 +72,7 @@ export default class CrawlBlockService extends BullableService {
   async _start(): Promise<void> {
     // create job retry 5 times, every 1000ms, and remove job if count fail = 300
     // const queueEvents = new QueueEvents('QueueA', { connection: { host: 'localhost', port: 8888 } });
-    const queueEvents = this.getQueueManager().getQueueEventsListener('QueueA') as QueueEvents;
+    const queueEvents = this.getQueueManager().getQueueEventsListener('QueueA') as QueueEventsListener;
 
     queueEvents.on('failed', (jobId, _err) => {
       this.logger.info('queue event failed', jobId);

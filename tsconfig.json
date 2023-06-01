@@ -15,7 +15,8 @@
     "paths": {
       "src/*": ["./src/*"],
       "test/*": ["./test/*"]
-    }
+    },
+    "experimentalDecorators": true
   },
   "exclude": ["node_modules", "dist"],
   "ts-node": {

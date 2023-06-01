@@ -5,8 +5,8 @@ import { Get, Service } from '@ourparentcenter/moleculer-decorators-extended';
 // TODO: Not very happy with relative import,
 //  but ts-node loader does not support yet with type alias for ESM project, will try to fix later
 import { inspect } from 'util';
+import { Summary, Response } from '@aura-nw/aura-ts-toolkit';
 import BaseService from '../../base/BaseService';
-import { Summary, Response } from '../../base/openapi';
 
 @Service()
 export default class GreeterService extends BaseService {

@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import { ServiceBroker } from 'moleculer';
 import { Action, Service } from '@ourparentcenter/moleculer-decorators-extended';
-import { inspect as _inspect } from 'util';
 //
 // TODO: Not very happy with relative import,
 //  but ts-node loader does not support yet with type alias for ESM project, will try to fix later
-import BullableService, { QueueHandler } from '../../base/BullableService';
+import { QueueHandler } from '@aura-nw/aura-ts-toolkit';
+import BullableService from '../../base/BullableService';
 
 @Service()
 export default class QueueSampleService extends BullableService {

@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ServiceBroker } from 'moleculer';
+import { QueueManager, JobOption, QueueOptions } from '@aura-nw/aura-ts-toolkit';
 import _ from 'underscore';
-import QueueManager from '../common/queue/queue-manager';
 
-import { JobOption, QueueOptions } from '../common/queue/queue-manager-types';
 import BaseService from './BaseService';
 
 // const BULL_REDIS_KEY = process.env.BULL_REDIS_KEY || 'BULL_REDIS_KEY';
@@ -39,26 +38,4 @@ export default class BullableService extends BaseService {
       this.logger.warn('Unable to stop redis queuegracefully.', e);
     }
   }
-}
-
-/**
- * Decorator functions to annotate a method as queue handler
- */
-export function QueueHandler(opt: Partial<QueueOptions>) {
-  return (target: any, propertyKey: string, _descriptor?: PropertyDescriptor) => {
-    // it's not a bullable service, do nothing
-    if (!target.setHandler) {
-      return;
-    }
-
-    // default queue name and job type from class and method name
-    // const qOpt = { ...defaultOpt, ...opt };
-    const qOpt = _.defaults(opt, {
-      queueName: target.constructor.name,
-      jobType: propertyKey,
-      prefix: 'bull',
-    });
-
-    target.setHandler(qOpt, target[propertyKey]);
-  };
 }
