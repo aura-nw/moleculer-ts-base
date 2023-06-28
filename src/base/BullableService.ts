@@ -19,8 +19,19 @@ export default class BullableService extends BaseService {
     return this.getQueueManager().createJob(queueName, jobType, opts, payload);
   }
 
+  // listHandler to save all from decorator
+  private listHandler?: {
+    opts: QueueOptions;
+    fn: (payload: any) => Promise<void>;
+  }[];
+
   public async setHandler(opts: QueueOptions, fn: (payload: any) => Promise<void>): Promise<void> {
-    this.getQueueManager().registerQueueHandler(opts, fn);
+    // comment this because not want register job now
+    // this.getQueueManager().registerQueueHandler(opts, fn);
+
+    // just put it in a list, and start it in _start life cycle
+    if (!this.listHandler) this.listHandler = [];
+    this.listHandler?.push({ opts, fn });
   }
 
   getQueueManager(): QueueManager {
@@ -29,6 +40,16 @@ export default class BullableService extends BaseService {
   }
 
   // //////////////////////////////////////// life cycle handler
+
+  _start(): Promise<void> {
+    // register queue here
+    if (this.listHandler && this.listHandler.length > 0) {
+      this.listHandler?.forEach((element: any) => {
+        this.getQueueManager().registerQueueHandler(element.opts, element.fn);
+      });
+    }
+    return super._start();
+  }
 
   async stopped() {
     super.stopped();
